@@ -276,7 +276,7 @@ class Picker(HasTraits):
         self.text_widget = tvtk.TextWidget()
         self.data = PickedData()
 
-        self.text_setup(self.renwin)
+        self.text_setup(renwin)
         self.widgets = False
 
     def __get_pure_state__(self):
@@ -315,7 +315,6 @@ class Picker(HasTraits):
         be flipped appropriately such that y=0 is the bottom of the
         window.
         """
-        print(self.renwin)
         if self.pick_type_ == 1:
             self.data = self.pick_point(x, y)
         elif self.pick_type_ == 2:
