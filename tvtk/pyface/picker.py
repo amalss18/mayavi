@@ -451,9 +451,9 @@ class Picker(HasTraits):
         self.text_rep._get_position_coordinate().set(value=(.15, .15, 0))
         self.text_rep._get_position2_coordinate().set(value=(.3, .2, 0))
         self.text_widget.set(representation=self.text_rep)
-        self.text_widget.set(interactor=renwin.interactor)
         self.text_widget.set(text_actor=self.text_actor)
         self.text_widget.selectable = 0
+        self.renwin.add_widgets(self.text_widget)
 
     def _update_actor(self, coordinate, bounds):
         """Updates the actor by setting its position and scale."""
