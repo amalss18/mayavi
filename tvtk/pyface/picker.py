@@ -260,8 +260,7 @@ class Picker(HasTraits):
         prop.diffuse = 0.0
         configure_input(self.p_mapper, self.p_source)
         self.p_actor.mapper = self.p_mapper
-        self.interactor = self.renwin.interactor
-
+        self.renwin_setup()
         self.probe_data.points = [[0.0, 0.0, 0.0]]
 
         self.ui = None
@@ -455,3 +454,6 @@ class Picker(HasTraits):
                 self.ui.control.Raise()
             except AttributeError:
                 pass
+
+    def renwin_setup(self):
+        self.interactor = self.renwin.interactor
