@@ -260,7 +260,6 @@ class Picker(HasTraits):
         prop.diffuse = 0.0
         configure_input(self.p_mapper, self.p_source)
         self.p_actor.mapper = self.p_mapper
-        self.renwin_setup()
         self.probe_data.points = [[0.0, 0.0, 0.0]]
 
         self.ui = None
@@ -301,7 +300,7 @@ class Picker(HasTraits):
           be flipped appropriately such that y=0 is the bottom of the
           window.
         """
-
+        self.renwin_setup()
         data = None
         if self.pick_type_ == 1:
             data = self.pick_point(x, y)
