@@ -276,7 +276,7 @@ class Picker(HasTraits):
         self.text_widget = tvtk.TextWidget()
         self.data = PickedData()
 
-        self.text_setup()
+        self.text_setup(self.renwin)
         self.widgets = False
 
     def __get_pure_state__(self):
@@ -315,6 +315,7 @@ class Picker(HasTraits):
         be flipped appropriately such that y=0 is the bottom of the
         window.
         """
+        print(self.renwin)
         if self.pick_type_ == 1:
             self.data = self.pick_point(x, y)
         elif self.pick_type_ == 2:
@@ -445,13 +446,13 @@ class Picker(HasTraits):
     #################################################################
     # Non-public interface.
     #################################################################
-    def text_setup(self):
+    def text_setup(self, renwin):
         """Sets the properties of the text widget"""
         self.text_actor._get_text_property().font_size = 100
         self.text_rep._get_position_coordinate().set(value=(.15, .15, 0))
         self.text_rep._get_position2_coordinate().set(value=(.3, .2, 0))
         self.text_widget.set(representation=self.text_rep)
-        self.text_widget.set(interactor=self.renwin.interactor)
+        self.text_widget.set(interactor=renwin.interactor)
         self.text_widget.set(text_actor=self.text_actor)
         self.text_widget.selectable = 0
 
