@@ -276,7 +276,7 @@ class Picker(HasTraits):
         self.text_widget = tvtk.TextWidget()
         self.data = PickedData()
 
-        self.text_setup(renwin)
+        self.text_setup()
         self.widgets = False
 
     def __get_pure_state__(self):
@@ -322,7 +322,7 @@ class Picker(HasTraits):
         elif self.pick_type_ == 3:
             self.data = self.pick_world(x, y)
 
-        if self.widgets is None:
+        if self.widgets is False:
             self.setup_widgets()
 
         if self.data.point_id == -1:
@@ -440,12 +440,12 @@ class Picker(HasTraits):
         self.text_actor.visibility = 0
         self.renwin.renderer.remove_actor(self.text_actor)
         self.text_widget.enabled = 0
-        self.widgets = None
+        self.widgets = False
 
     #################################################################
     # Non-public interface.
     #################################################################
-    def text_setup(self, renwin):
+    def text_setup(self):
         """Sets the properties of the text widget"""
         self.text_actor._get_text_property().font_size = 100
         self.text_rep._get_position_coordinate().set(value=(.15, .15, 0))
@@ -453,7 +453,6 @@ class Picker(HasTraits):
         self.text_widget.set(representation=self.text_rep)
         self.text_widget.set(text_actor=self.text_actor)
         self.text_widget.selectable = 0
-        self.renwin.add_widgets(self.text_widget)
 
     def _update_actor(self, coordinate, bounds):
         """Updates the actor by setting its position and scale."""
@@ -468,6 +467,7 @@ class Picker(HasTraits):
 
     def setup_widgets(self):
         """Sets up the picker actor and text actor"""
+        self.text_widget.set(interactor=self.renwin.interactor)
         self.renwin.renderer.add_actor(self.p_actor)
         self.renwin.renderer.add_actor(self.text_actor)
         self.p_actor.visibility = 1
