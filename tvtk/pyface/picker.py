@@ -276,9 +276,6 @@ class Picker(HasTraits):
         self.text_widget = tvtk.TextWidget()
         self.data = PickedData()
 
-        self.renwin.renderer.add_actor(self.p_actor)
-        self.renwin.renderer.add_actor(self.text_actor)
-
         self.text_setup()
         self.widgets = True
 
@@ -481,3 +478,8 @@ class Picker(HasTraits):
         """Lets you set the picker properties"""
         self.pick_type = pick_type
         self.tolerance = tolerance
+
+    def renwin_setup(self):
+        self.renwin.renderer.add_actor(self.p_actor)
+        self.renwin.renderer.add_actor(self.text_actor)
+
