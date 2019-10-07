@@ -237,7 +237,7 @@ class Picker(HasTraits):
     #################################################################
     # `object` interface.
     #################################################################
-    def __init__(self, renwin, **traits):
+    def __init__(self, renwin = tvtk.RenderWindow(), **traits):
         super(Picker, self).__init__(**traits)
 
         self.renwin = renwin
@@ -261,6 +261,7 @@ class Picker(HasTraits):
         configure_input(self.p_mapper, self.p_source)
         self.p_actor.mapper = self.p_mapper
         self.probe_data.points = [[0.0, 0.0, 0.0]]
+        self.interactor = self.renwin.interactor
 
         self.ui = None
 
@@ -300,7 +301,6 @@ class Picker(HasTraits):
           be flipped appropriately such that y=0 is the bottom of the
           window.
         """
-        self.renwin_setup()
         data = None
         if self.pick_type_ == 1:
             data = self.pick_point(x, y)
@@ -454,5 +454,3 @@ class Picker(HasTraits):
             except AttributeError:
                 pass
 
-    def renwin_setup(self):
-        self.interactor = self.renwin.interactor
