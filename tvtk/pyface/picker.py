@@ -29,7 +29,6 @@ from tvtk.tvtk_base import TraitRevPrefixMap, false_bool_trait
 from tvtk.common import configure_input
 from apptools.persistence import state_pickler
 from tvtk.common import vtk_major_version
-from mayavi import mlab
 import numpy as np
 
 
