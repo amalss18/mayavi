@@ -30,7 +30,6 @@ from tvtk.common import configure_input
 from apptools.persistence import state_pickler
 from tvtk.common import vtk_major_version
 import numpy as np
-from mayavi.tools import gcf
 
 
 ######################################################################
@@ -337,6 +336,9 @@ class Picker(HasTraits):
             self.pick_handler.handle_pick(self.data, self.renwin, self.text_actor)
             self.text_actor._get_text_property().set(justification="left")
 
+        if self.renwin.background == (0.5, 0.5, 0.5):
+            pass
+        else:
             self.set_text_color()
 
     def pick_point(self, x, y):
@@ -488,13 +490,10 @@ class Picker(HasTraits):
 
     def set_text_color(self, color=None):
         if color is None:
-            bgcolor = gcf().scene.background
+            bgcolor = self.renwin.background
             tcolor = [0, 0, 0]
-            if bgcolor == (0.5, 0.5, 0.5):
-                tcolor = (1, 1, 1)
-            else:
-                for i in range(3):
-                    tcolor[i] = abs(bgcolor[i]-1)
+            for i in range(3):
+                tcolor[i] = abs(bgcolor[i]-1)
             self.text_actor._get_text_property().color = tuple(tcolor)
         else:
             self.text_actor._get_text_property().color = color
