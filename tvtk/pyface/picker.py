@@ -488,7 +488,7 @@ class Picker(HasTraits):
 
     def set_text_color(self, color=None):
         if color is None:
-            bgcolor = mlab.gcf().scene.background
+            bgcolor = (0.1,0.1,0.1)
             tcolor = [0, 0, 0]
             if bgcolor == (0.5, 0.5, 0.5):
                 tcolor = (1, 1, 1)
