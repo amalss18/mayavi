@@ -478,3 +478,4 @@ class Picker(HasTraits):
         """Lets you set the picker properties"""
         self.pick_type = pick_type
         self.tolerance = tolerance
+
