@@ -30,6 +30,7 @@ from tvtk.common import configure_input
 from apptools.persistence import state_pickler
 from tvtk.common import vtk_major_version
 import numpy as np
+from mayavi.tools import gcf
 
 
 ######################################################################
@@ -487,7 +488,7 @@ class Picker(HasTraits):
 
     def set_text_color(self, color=None):
         if color is None:
-            bgcolor = (0.1,0.1,0.1)
+            bgcolor = gcf().scene.background
             tcolor = [0, 0, 0]
             if bgcolor == (0.5, 0.5, 0.5):
                 tcolor = (1, 1, 1)
