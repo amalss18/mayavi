@@ -1,7 +1,6 @@
 from tvtk.api import tvtk
 from .tools import gcf
 from mayavi.sources.widget_source import WidgetSource
-from mayavi import mlab
 from traits.api import RGBColor, Str, on_trait_change, Array, Float, Int, File, Bool
 from traitsui.api import ArrayEditor
 from traitsui.api import Group, View, Item
@@ -252,15 +251,17 @@ class ButtonWidget(WidgetSource):
             self.scene.render()
 
 
-def slider_widget(figure=gcf):
+def slider_widget(figure=None):
+    if figure is None:
+        figure = gcf
     slider = SliderWidget()
     slider._widget_setup(figure)
-    mlab.get_engine().add_source(slider)
     return slider
 
 
-def button_widget(figure=gcf):
+def button_widget(figure=None):
+    if figure is None:
+        figure = gcf
     button = ButtonWidget()
     button._widget_setup(figure)
-    mlab.get_engine().add_source(button)
     return button
